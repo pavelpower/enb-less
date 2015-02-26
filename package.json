@@ -1,6 +1,6 @@
 {
-  "name": "enb-stylus",
-  "version": "1.2.2",
+  "name": "enb-less",
+  "version": "1.0.0",
   "description": "enb stylus techs",
   "keywords": [
     "enb",
@@ -10,41 +10,39 @@
     "autoprefixer",
     "nib"
   ],
-  "author": "Marat Dulin <mdevils@yandex.ru>",
+  "authors": "Pavel Akhmetchanov <p.akhmetchanov@ya.ru>",
+  "authors": [
+    "Pavel Akhmetchanov <p.akhmetchanov@ya.ru>",
+    "Marat Dulin <mdevils@yandex.ru>"
+  ],
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/enb-make/enb-stylus/blob/master/LICENSE"
+      "url": "https://github.com/enb-make/enb-less/blob/master/LICENSE"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:enb-make/enb-stylus.git"
+    "url": "git@github.com:pavelpower/enb-less.git"
   },
-  "homepage": "https://github.com/enb-make/enb-stylus",
-  "bugs": "https://github.com/enb-make/enb-stylus/issues",
+  "homepage": "https://github.com/pavelpower/enb-less",
+  "bugs": "https://github.com/pavelpower/enb-less/issues",
   "maintainers": [
     {
-      "name": "Andrew Abramov",
-      "email": "andrewblond@yandex.com",
-      "github-username": "andrewblond"
-    },
-    {
-      "name": "Marat Dulin",
-      "email": "mdevils@yandex.ru",
-      "github-username": "mdevils"
+      "name": "Pavel Akhmetchanov",
+      "email": "p.akhmetchanov@ya.ru",
+      "github-username": "pavelpower"
     }
   ],
   "contributors": [
-    "Andrew Abramov <andrewblond@yandex.com>",
-    "Marat Dulin <mdevils@yandex.ru>"
+    "Pavel Akhmetchanov <p.akhmetchanov@ya.ru>"
   ],
   "peerDependencies": {
     "enb": ">=0.8.43 <1.0.0"
   },
   "dependencies": {
     "vow": "0.4.8",
-    "stylus": "0.50.0",
+    "less": "~1.7.5",
     "autoprefixer-core": "~5.1.0"
   },
   "devDependencies": {
