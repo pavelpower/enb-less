@@ -1,63 +1,41 @@
-enb-stylus [![Build Status](https://travis-ci.org/enb-make/enb-stylus.png?branch=master)](https://travis-ci.org/enb-make/enb-stylus) [![NPM version](https://badge.fury.io/js/enb-stylus.png)](http://badge.fury.io/js/enb-stylus)
+enb-less [![Build Status](https://travis-ci.org/pavelpower/enb-less.png?branch=master)](https://travis-ci.org/pavelpower/enb-less) [![NPM version](https://badge.fury.io/js/enb-less.png)](http://badge.fury.io/js/enb-less)
 ===========
 
-Поддержка Stylus для ENB. Пакет содержит технологии:
- * `enb-stylus/techs/css-stylus`
- * `enb-stylus/techs/css-stylus-with-nib`
- * `enb-stylus/techs/css-stylus-with-autoprefixer`
+Поддержка Less для ENB. Пакет содержит технологии:
+ * `enb-stylus/techs/css-less`
+ * `enb-stylus/techs/css-less-with-autoprefixer`
 
 Установка:
 ----------
 
 ```
-npm install enb-stylus
+npm install enb-less
 ```
 
-css-stylus
+css-less
 ----------
 
-Собирает *css*-файлы вместе со *styl*-файлами по deps'ам, обрабатывает инклуды и ссылки, сохраняет в виде `?.css`.
+Собирает *css*-файлы вместе со *less*-файлами по deps'ам, обрабатывает инклуды и ссылки, сохраняет в виде `?.css`.
 
 **Опции**
 
 * *String* **target** — Результирующий таргет. По умолчанию `?.css`.
 * *Boolean* **compress** - Минифицировать результирующий CSS. По умолчанию `false`.
 * *String* **prefix** - Префикс, добавляемый классам в результирующем CSS. По умолчанию `''`.
-* *Object* **variables** — Дополнительные переменные окружения для `stylus`.
+* *Object* **variables** — Дополнительные переменные окружения для `less`.
 * *String* **filesTarget** — files-таргет, на основе которого получается список исходных файлов
   (его предоставляет технология `files`). По умолчанию — `?.files`.
 
 **Пример**
 
 ```javascript
-nodeConfig.addTech(require('enb-stylus/techs/css-stylus'));
+nodeConfig.addTech(require('enb-less/techs/css-less'));
 ```
 
-css-stylus-with-nib
--------------------
-
-Собирает *css*-файлы вместе со *styl*-файлами по deps'ам, обрабатывает инклуды и ссылки, сохраняет в виде `?.css`.
-При сборке *styl*-файлов использует `nib`.
-
-**Опции**
-
-* *String* **target** — Результирующий таргет. По умолчанию `?.css`.
-* *Boolean* **compress** - Минифицировать результирующий CSS. По умолчанию `false`.
-* *String* **prefix** - Префикс, добавляемый классам в результирующем CSS. По умолчанию `''`.
-* *Object* **variables** — Дополнительные переменные окружения для `stylus`.
-* *String* **filesTarget** — files-таргет, на основе которого получается список исходных файлов
-  (его предоставляет технология `files`). По умолчанию — `?.files`.
-
-**Пример**
-
-```javascript
-nodeConfig.addTech(require('enb-stylus/techs/css-stylus-with-nib'));
-```
-
-css-stylus-with-autoprefixer
+css-less-with-autoprefixer
 ----------------------------
 
-Собирает *css*-файлы вместе со *styl*-файлами по deps'ам, обрабатывает инклуды и ссылки, сохраняет в виде `?.css`.
+Собирает *css*-файлы вместе со *less*-файлами по deps'ам, обрабатывает инклуды и ссылки, сохраняет в виде `?.css`.
 Производит пост-обработку автопрефиксером.
 
 **Опции**
@@ -65,7 +43,7 @@ css-stylus-with-autoprefixer
 * *String* **target** — Результирующий таргет. По умолчанию `?.css`.
 * *Boolean* **compress** - Минифицировать результирующий CSS. По умолчанию `false`.
 * *String* **prefix** - Префикс, добавляемый классам в результирующем CSS. По умолчанию `''`.
-* *Object* **variables** — Дополнительные переменные окружения для `stylus`.
+* *Object* **variables** — Дополнительные переменные окружения для `less`.
 * *Array* **browsers** — Браузеры (опция автопрефиксера).
 * *String* **filesTarget** — files-таргет, на основе которого получается список исходных файлов
   (его предоставляет технология `files`). По умолчанию — `?.files`.
@@ -73,5 +51,5 @@ css-stylus-with-autoprefixer
 **Пример**
 
 ```javascript
-nodeConfig.addTech(require('enb-stylus/techs/css-stylus-with-autoprefixer'), {autoprefixerArguments: ['ie 7', 'ie 8']});
+nodeConfig.addTech(require('enb-less/techs/css-less-with-autoprefixer'), {autoprefixerArguments: ['ie 7', 'ie 8']});
 ```
