@@ -53,3 +53,8 @@ css-less-with-autoprefixer
 ```javascript
 nodeConfig.addTech(require('enb-less/techs/css-less-with-autoprefixer'), {autoprefixerArguments: ['ie 7', 'ie 8']});
 ```
+
+change list
+----------------------------
+
+* fixed trouble with relative path in less

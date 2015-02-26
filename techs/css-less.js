@@ -36,9 +36,14 @@ module.exports = require('enb/techs/css').buildFlow()
         var css = sourceFiles.map(function (file) {
             var path = _this.node.relativePath(file.fullname);
             if (file.name.indexOf('.less') !== -1) {
-                return '/* ' + path + ':begin */\n' +
-                    '@import "' + path + '";\n' +
-                    '/* ' + path + ':end */\n';
+
+                // get body of less files, but relative @import is not normal work
+                return [
+                    '/* ' + path + ':begin */\n',
+                    require('fs').readFileSync(_this.node.resolvePath(path)).toString(),
+                    '/* ' + path + ':end */\n'
+                ].join('');
+
             } else {
                 return '@import "' + path + '";';
             }
