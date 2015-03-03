@@ -10,6 +10,7 @@
  * * *Object* **variables** — Дополнительные переменные окружения для `less`.
  * * *String* **filesTarget** — files-таргет, на основе которого получается список исходных файлов
  *   (его предоставляет технология `files`). По умолчанию — `?.files`.
+ * * *Boolean* **relativeUrl** — создавать относительные пути (по умлочанию `true` - содавать)
  *
  * **Пример**
  *
@@ -19,28 +20,42 @@
  */
 var vow = require('vow');
 var less = require('less');
+var urlRegexp = /url\(['"]{0,1}([^'"\)]*)['"]{0,1}\)/gm;
 
 module.exports = require('enb/techs/css').buildFlow()
     .name('css-less')
     .target('target', '?.css')
     .defineOption('compress', false)
+    .defineOption('relativeUrl', true)
     .defineOption('prefix', '')
     .defineOption('variables')
     .useFileList(['css', 'less'])
     .builder(function (sourceFiles) {
         var _this = this;
-        //var filename = this.node.resolvePath(this._target);
         var defer = vow.defer();
         var options = {};
+        var variables = this._variables;
+        var relativeUrl = this.relativeUrl;
 
         var css = sourceFiles.map(function (file) {
             var path = _this.node.relativePath(file.fullname);
             if (file.name.indexOf('.less') !== -1) {
 
+                var body = require('fs').readFileSync(_this.node.resolvePath(path)).toString();
+
+                if (relativeUrl) {
+                    var urls = body.match(urlRegexp);
+                    if (urls !== undefined) {
+                        body = body.replace(/url\(['"]{0,1}([^'"\)]*)['"]{0,1}\)/gm, 'url("' +
+                        require('path').dirname(path) +
+                        '/$1")');
+                    }
+                }
+
                 // get body of less files, but relative @import is not normal work
                 return [
                     '/* ' + path + ':begin */\n',
-                    require('fs').readFileSync(_this.node.resolvePath(path)).toString(),
+                    body,
                     '/* ' + path + ':end */\n'
                 ].join('');
 
@@ -49,14 +64,17 @@ module.exports = require('enb/techs/css').buildFlow()
             }
         }).join('\n');
 
-        if (this._variables) {
-            Object.keys(this._variables).forEach(function (key) {
-                options[key] = this._variables[key];
+        if (variables) {
+            Object.keys(variables).forEach(function (key) {
+                options[key] = variables[key];
             }.bind(this));
         }
 
         less.render(css, options, function (err, css) {
             if (err) {
+                // т.к. enb при сборке не показывает ошибок из reject
+                // придется отсавить тут console.log до update enb с фиксом этого бага
+                console.log(err);
                 defer.reject(err);
             } else {
                 defer.resolve(css);

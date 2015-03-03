@@ -25,6 +25,7 @@ css-less
 * *Object* **variables** — Дополнительные переменные окружения для `less`.
 * *String* **filesTarget** — files-таргет, на основе которого получается список исходных файлов
   (его предоставляет технология `files`). По умолчанию — `?.files`.
+* *Boolean* **relativeUrl** — создавать относительные пути (по умлочанию `true` - содавать)
 
 **Пример**
 
@@ -47,6 +48,7 @@ css-less-with-autoprefixer
 * *Array* **browsers** — Браузеры (опция автопрефиксера).
 * *String* **filesTarget** — files-таргет, на основе которого получается список исходных файлов
   (его предоставляет технология `files`). По умолчанию — `?.files`.
+* *Boolean* **relativeUrl** — создавать относительные пути (по умлочанию `true` - содавать)
 
 **Пример**
 
@@ -58,3 +60,4 @@ change list
 ----------------------------
 
 * fixed trouble with relative path in less
+* added param `relativeUrl` for replace url on css on relative
