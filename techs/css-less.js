@@ -35,7 +35,7 @@ module.exports = require('enb/techs/css').buildFlow()
         var defer = vow.defer();
         var options = {};
         var variables = this._variables;
-        var relativeUrl = this.relativeUrl;
+        var relativeUrl = this._relativeUrl;
 
         var css = sourceFiles.map(function (file) {
             var path = _this.node.relativePath(file.fullname);
