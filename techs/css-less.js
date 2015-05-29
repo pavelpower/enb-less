@@ -46,9 +46,11 @@ module.exports = require('enb/techs/css').buildFlow()
                 if (relativeUrl) {
                     var urls = body.match(urlRegexp);
                     if (urls !== undefined) {
-                        body = body.replace(/url\(['"]{0,1}([^'"\)]*)['"]{0,1}\)/gm, 'url("' +
-                        require('path').dirname(path) +
-                        '/$1")');
+                        body = body.replace(/url\((?!data:image)['"]{0,1}([^'"\)]*)['"]{0,1}\)/gm,
+                            [ 'url("',
+                              require('path').dirname(path),
+                              '/$1")'
+                            ].join(''));
                     }
                 }
 
